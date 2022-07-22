@@ -10,7 +10,7 @@ const copyFn = (text) => {
     .catch(() => {
       console.log("input 模式");
       const textarea = document.createElement("textarea");
-      textarea.value = `${title}\n${url}`;
+      textarea.value = text;
       document.body.appendChild(textarea);
       textarea.select(); // 选中文本
       textarea.focus(); // 选中文本
@@ -27,7 +27,7 @@ let copyText = "";
 chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
   title = tabs[0].title;
   url = tabs[0].url;
-  copyText = `${title} ${url}`;
+  copyText = `${title}\n${url}`;
   document.querySelector("#title").innerHTML = `${title}`;
   document.querySelector("#url").innerHTML = `${url}`;
   copyFn(copyText);
