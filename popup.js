@@ -9,11 +9,13 @@ const copyFn = (text) => {
     })
     .catch(() => {
       console.log("input 模式");
-      const input = document.querySelector("#input");
-      input.value = `${title} ${url}`;
-      input.select(); // 选中文本
-      input.focus(); // 选中文本
+      const textarea = document.createElement("textarea");
+      textarea.value = `${title}\n${url}`;
+      document.body.appendChild(textarea);
+      textarea.select(); // 选中文本
+      textarea.focus(); // 选中文本
       document.execCommand("copy"); // 执行浏览器复制命令
+      document.body.removeChild(textarea);
       console.log(title, url);
     });
 };
